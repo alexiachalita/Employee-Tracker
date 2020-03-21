@@ -1,23 +1,13 @@
-DROP database if exists companyBD;
+DROP database if exists company_DB;
 
-CREATE DATABASE companyDB;
+CREATE DATABASE company_DB;
 
-USE companyDB;
-
-CREATE TABLE employee(
-  id INT NOT NULL AUTO_INCREMENT,
-  first_name VARCHAR(30) NULL,
-  last_name VARCHAR(30) NULL,
-  role_id int,
-  manager_id int,
-  primary key(id) 
-foreign key(role_id) references role(id),
-);
+USE company_DB;
 
 CREATE TABLE department(
   id INT NOT NULL AUTO_INCREMENT,
-  name VARCHAR(30) NULL,
-  primary key(id),
+  departmentName VARCHAR(30) NULL,
+  primary key(id)
 );
 
 CREATE TABLE role(
@@ -26,5 +16,15 @@ CREATE TABLE role(
   salary DECIMAL,
   department_id INT,
   primary key(id),
-  foreign key(employee_id) references employee(id), 
+  foreign key(department_id) references department(id)
+);
+
+CREATE TABLE employee(
+  id INT NOT NULL AUTO_INCREMENT,
+  first_name VARCHAR(30) NULL,
+  last_name VARCHAR(30) NULL,
+  role_id int,
+  manager_id int,
+  primary key(id),
+  foreign key(role_id) references role(id)
 );
